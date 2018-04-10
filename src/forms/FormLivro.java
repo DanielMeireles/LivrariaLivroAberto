@@ -18,31 +18,20 @@ import model.Livro;
  * @author Daniel
  */
 public class FormLivro extends javax.swing.JFrame {
+    public static Livro livro = null;
+    
+    public static Livro getLivro() {
+        return livro;
+    }
 
-    /**
-     * Creates new form FormLivro
-     */
+    public static void setLivro(Livro livro) {    
+        FormLivro.livro = livro;
+    }
+    
     public FormLivro() {
         initComponents();
     }
     
-    public FormLivro(Livro livro) {
-        initComponents();
-        ftCodigo.setText(livro.getCodigo());
-        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-        ftDataPublicacao.setText(f.format(livro.getDataPublicação()));
-        ftQtdeEstoque.setText(Integer.toString(livro.getQuantidadeEstoque()));
-        
-        String aux = Float.toString(livro.getValorUnitario());
-        aux = aux.replace(",", "").replace(".", ",");
-        ftValorUnitario.setText(aux);
-        tfTitulo.setText(livro.getTitulo());
-        cbFornecedor.setSelectedItem(livro.getFornecedor());
-        btCadastrar.setEnabled(false);
-        btAtualizar.setEnabled(true);
-        btCancelar.setEnabled(false);
-        ftCodigo.setEnabled(false);
-    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,6 +63,11 @@ public class FormLivro extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
@@ -161,11 +155,6 @@ public class FormLivro extends javax.swing.JFrame {
         ftValorUnitario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
         ftValorUnitario.setText("0,00");
         ftValorUnitario.setName("ftValorUnitario"); // NOI18N
-        ftValorUnitario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ftValorUnitarioActionPerformed(evt);
-            }
-        });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Quantidade em Estoque:");
@@ -273,9 +262,8 @@ public class FormLivro extends javax.swing.JFrame {
             try {
                 l.setDataPublicação((Date) f.parse(ftDataPublicacao.getText()));
             } catch (ParseException ex) {
-                Logger.getLogger(FormLivro.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
+                JOptionPane.showMessageDialog(null, "Data inválida!", "Data inválida", JOptionPane.ERROR_MESSAGE);
+            }            
 
             l.setFornecedor(cbFornecedor.getSelectedItem().toString());
             l.setQuantidadeEstoque(Integer.parseInt(ftQtdeEstoque.getText()));
@@ -338,13 +326,27 @@ public class FormLivro extends javax.swing.JFrame {
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
+        livro = null;
         this.dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
-    private void ftValorUnitarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftValorUnitarioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ftValorUnitarioActionPerformed
-
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        if(livro != null){
+            ftCodigo.setText(livro.getCodigo());
+            SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+            ftDataPublicacao.setText(f.format(livro.getDataPublicação()));
+            ftQtdeEstoque.setText(Integer.toString(livro.getQuantidadeEstoque()));
+            String aux = Float.toString(livro.getValorUnitario());
+            aux = aux.replace(",", "").replace(".", ",");
+            ftValorUnitario.setText(aux);
+            tfTitulo.setText(livro.getTitulo());
+            cbFornecedor.setSelectedItem(livro.getFornecedor());
+            btCadastrar.setEnabled(false);
+            btAtualizar.setEnabled(true);
+            btCancelar.setEnabled(false);
+            ftCodigo.setEnabled(false);
+        }
+    }//GEN-LAST:event_formWindowOpened
     /**
      * @param args the command line arguments
      */

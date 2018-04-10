@@ -214,7 +214,8 @@ public class FormBuscaLivro extends javax.swing.JFrame {
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
         Livro l = FormPrincipal.dbLivro.buscarLivro(ftCodigo.getText());
         if(l != null){
-            new FormLivro(l).setVisible(true);
+            FormLivro.setLivro(l);
+            new FormLivro().setVisible(true);
         }else{
             JOptionPane.showMessageDialog(null, "Não existe livro cadastrado com esse código!", "Erro pesquisa", JOptionPane.WARNING_MESSAGE);
         }
