@@ -79,6 +79,7 @@ public class Livro {
 
     public void setDataPublicação(String dt) {
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+        f.setLenient(false);
         try {
             dataPublicacao = (Date) f.parse(dt);
         } catch (ParseException ex) {

@@ -5,7 +5,9 @@
  */
 package forms;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import model.Livro;
 
@@ -166,7 +168,13 @@ public class FormLivro extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         ftDataPublicacao.setText("");
+        ftDataPublicacao.setToolTipText("");
         ftDataPublicacao.setName("ftDataPublicacao"); // NOI18N
+        ftDataPublicacao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ftDataPublicacaoKeyReleased(evt);
+            }
+        });
 
         try {
             ftCodigo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####")));
@@ -255,11 +263,11 @@ public class FormLivro extends javax.swing.JFrame {
             l.setDataPublicação(ftDataPublicacao.getText());
             l.setFornecedor(cbFornecedor.getSelectedItem().toString());
             String aux = ftQtdeEstoque.getText();
-            aux = aux.replace(".", "");
+            aux = 0+aux.replace(".", "");
             l.setQuantidadeEstoque(Integer.parseInt(aux));
             l.setTitulo(ftCodigo.getText());
             aux = ftValorUnitario.getText();
-            aux = aux.replace(".", "").replace(",", ".");                
+            aux = 0+aux.replace(".", "").replace(",", ".");                
             l.setValorUnitario(new Float(aux));
             if(l.validaLivro()){
                 FormPrincipal.dbLivro.adicionarLivro(l);
@@ -282,11 +290,11 @@ public class FormLivro extends javax.swing.JFrame {
             l.setDataPublicação(ftDataPublicacao.getText());            
             l.setFornecedor(cbFornecedor.getSelectedItem().toString());
             String aux = ftQtdeEstoque.getText();
-            aux = aux.replace(".", "");
+            aux = 0+aux.replace(".", "");
             l.setQuantidadeEstoque(Integer.parseInt(aux));
             l.setTitulo(ftCodigo.getText());
             aux = ftValorUnitario.getText();
-            aux = aux.replace(".", "").replace(",", ".");                
+            aux = 0+aux.replace(".", "").replace(",", ".");                
             l.setValorUnitario(new Float(aux));
             if(l.validaLivro()){
                 FormPrincipal.dbLivro.alterarLivro(l);
@@ -333,6 +341,19 @@ public class FormLivro extends javax.swing.JFrame {
             tfTitulo.requestFocus();
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void ftDataPublicacaoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ftDataPublicacaoKeyReleased
+        if(ftDataPublicacao.getText().trim().length() == 10){
+            SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+            f.setLenient(false);
+            try {
+                Date dataPublicacao = (Date) f.parse(ftDataPublicacao.getText());
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(null, "Data inválida", "Data inválida", JOptionPane.WARNING_MESSAGE);
+                ftDataPublicacao.setText("");
+            }
+        }
+    }//GEN-LAST:event_ftDataPublicacaoKeyReleased
     /**
      * @param args the command line arguments
      */
