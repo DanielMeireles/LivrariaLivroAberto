@@ -5,6 +5,7 @@
  */
 package model;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -76,8 +77,17 @@ public class Livro {
         return dataPublicacao;
     }
 
-    public void setDataPublicação(Date dataPublicação) {
-        this.dataPublicacao = dataPublicação;
+    public void setDataPublicação(String dt) {
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            dataPublicacao = (Date) f.parse(dt);
+        } catch (ParseException ex) {
+            dataPublicacao = null;
+        }
+    }
+    
+    public void setDataPublicação(Date dt) {
+        dataPublicacao = dt;
     }
     
     @Override
@@ -99,6 +109,6 @@ public class Livro {
         return !codigo.equals("") && 
                 !titulo.equals("") &&
                 valorUnitario != 0.00 &&
-                !dataPublicacao.equals("  /  /    ");
+                dataPublicacao != null;
     }
 }

@@ -5,11 +5,7 @@
  */
 package forms;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Livro;
 
@@ -257,14 +253,7 @@ public class FormLivro extends javax.swing.JFrame {
         if(l == null){
             l = new Livro();
             l.setCodigo(ftCodigo.getText());
-            
-            SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-            try {
-                l.setDataPublicação((Date) f.parse(ftDataPublicacao.getText()));
-            } catch (ParseException ex) {
-                JOptionPane.showMessageDialog(null, "Data inválida!", "Data inválida", JOptionPane.ERROR_MESSAGE);
-            }            
-
+            l.setDataPublicação(ftDataPublicacao.getText());
             l.setFornecedor(cbFornecedor.getSelectedItem().toString());
             l.setQuantidadeEstoque(Integer.parseInt(ftQtdeEstoque.getText()));
             l.setTitulo(ftCodigo.getText());
@@ -289,14 +278,7 @@ public class FormLivro extends javax.swing.JFrame {
         Livro l = FormPrincipal.dbLivro.buscarLivro(ftCodigo.getText());
         if (l != null) {
             l.setCodigo(ftCodigo.getText());
-            
-            SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
-            try {
-                l.setDataPublicação((Date) f.parse(ftDataPublicacao.getText()));
-            } catch (ParseException ex) {
-                Logger.getLogger(FormLivro.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            
+            l.setDataPublicação(ftDataPublicacao.getText());            
             l.setFornecedor(cbFornecedor.getSelectedItem().toString());
             l.setQuantidadeEstoque(Integer.parseInt(ftQtdeEstoque.getText()));
             l.setTitulo(tfTitulo.getText());
@@ -345,6 +327,7 @@ public class FormLivro extends javax.swing.JFrame {
             btAtualizar.setEnabled(true);
             btCancelar.setEnabled(false);
             ftCodigo.setEnabled(false);
+            tfTitulo.requestFocus();
         }
     }//GEN-LAST:event_formWindowOpened
     /**
