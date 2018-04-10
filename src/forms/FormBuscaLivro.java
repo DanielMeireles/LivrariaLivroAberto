@@ -225,6 +225,7 @@ public class FormBuscaLivro extends javax.swing.JFrame {
         Object[] options = {"Sim", "Não"};
         if(JOptionPane.showOptionDialog(null, "Tem certeza que deseja excluir?", "Atenção", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]) == JOptionPane.YES_OPTION){
             FormPrincipal.dbLivro.removerLivro(ftCodigo.getText());
+            JOptionPane.showMessageDialog(null, "Livro excluído com sucesso!", "Livro Excluído", JOptionPane.INFORMATION_MESSAGE);
             taDados.setText("");
             btEditar.setEnabled(false);
             btExcluir.setEnabled(false);
