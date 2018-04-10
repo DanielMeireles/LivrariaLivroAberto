@@ -149,14 +149,12 @@ public class FormLivro extends javax.swing.JFrame {
         jLabel4.setText("Valor Unitário:");
 
         ftValorUnitario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,##0.00"))));
-        ftValorUnitario.setText("0,00");
         ftValorUnitario.setName("ftValorUnitario"); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel5.setText("Quantidade em Estoque:");
 
         ftQtdeEstoque.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getIntegerInstance())));
-        ftQtdeEstoque.setText("0");
         ftQtdeEstoque.setName("ftQtdeEstoque"); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -167,6 +165,7 @@ public class FormLivro extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        ftDataPublicacao.setText("");
         ftDataPublicacao.setName("ftDataPublicacao"); // NOI18N
 
         try {
