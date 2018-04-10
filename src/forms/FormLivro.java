@@ -255,9 +255,11 @@ public class FormLivro extends javax.swing.JFrame {
             l.setCodigo(ftCodigo.getText());
             l.setDataPublicação(ftDataPublicacao.getText());
             l.setFornecedor(cbFornecedor.getSelectedItem().toString());
-            l.setQuantidadeEstoque(Integer.parseInt(ftQtdeEstoque.getText()));
+            String aux = ftQtdeEstoque.getText();
+            aux = aux.replace(".", "");
+            l.setQuantidadeEstoque(Integer.parseInt(aux));
             l.setTitulo(ftCodigo.getText());
-            String aux = ftValorUnitario.getText();
+            aux = ftValorUnitario.getText();
             aux = aux.replace(".", "").replace(",", ".");                
             l.setValorUnitario(new Float(aux));
             if(l.validaLivro()){
@@ -280,9 +282,11 @@ public class FormLivro extends javax.swing.JFrame {
             l.setCodigo(ftCodigo.getText());
             l.setDataPublicação(ftDataPublicacao.getText());            
             l.setFornecedor(cbFornecedor.getSelectedItem().toString());
-            l.setQuantidadeEstoque(Integer.parseInt(ftQtdeEstoque.getText()));
-            l.setTitulo(tfTitulo.getText());
-            String aux = ftValorUnitario.getText();
+            String aux = ftQtdeEstoque.getText();
+            aux = aux.replace(".", "");
+            l.setQuantidadeEstoque(Integer.parseInt(aux));
+            l.setTitulo(ftCodigo.getText());
+            aux = ftValorUnitario.getText();
             aux = aux.replace(".", "").replace(",", ".");                
             l.setValorUnitario(new Float(aux));
             if(l.validaLivro()){
