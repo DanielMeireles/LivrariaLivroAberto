@@ -109,7 +109,7 @@ public class Livro {
     public boolean validaLivro(){
         return !codigo.equals("") && 
                 !titulo.equals("") &&
-                valorUnitario != 0.00 &&
+                valorUnitario > 0.00 &&
                 dataPublicacao != null;
     }
 }

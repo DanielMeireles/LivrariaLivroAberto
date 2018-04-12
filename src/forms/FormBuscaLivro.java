@@ -5,8 +5,11 @@
  */
 package forms;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import model.Livro;
 
 /**
@@ -31,16 +34,31 @@ public class FormBuscaLivro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         ftCodigo = new javax.swing.JFormattedTextField();
         btBuscar = new javax.swing.JButton();
         cbBuscaTodos = new javax.swing.JCheckBox();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        taDados = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         btEditar = new javax.swing.JButton();
         btExcluir = new javax.swing.JButton();
         btSair = new javax.swing.JButton();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tbLivros = new javax.swing.JTable();
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -81,11 +99,6 @@ public class FormBuscaLivro extends javax.swing.JFrame {
             }
         });
 
-        taDados.setColumns(20);
-        taDados.setRows(5);
-        taDados.setEnabled(false);
-        jScrollPane1.setViewportView(taDados);
-
         btEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icones/icAtualizar.png"))); // NOI18N
         btEditar.setText("Editar");
         btEditar.setEnabled(false);
@@ -115,16 +128,51 @@ public class FormBuscaLivro extends javax.swing.JFrame {
         });
         jPanel1.add(btSair);
 
+        tbLivros.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Título", "Fornecedor", "Quantidade", "Valor Unitário", "Data de Publicação"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Float.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbLivros.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tbLivros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane3.setViewportView(tbLivros);
+        tbLivros.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tbLivros.getColumnModel().getColumnCount() > 0) {
+            tbLivros.getColumnModel().getColumn(0).setPreferredWidth(80);
+            tbLivros.getColumnModel().getColumn(1).setPreferredWidth(200);
+            tbLivros.getColumnModel().getColumn(2).setPreferredWidth(200);
+            tbLivros.getColumnModel().getColumn(3).setPreferredWidth(80);
+            tbLivros.getColumnModel().getColumn(4).setPreferredWidth(90);
+            tbLivros.getColumnModel().getColumn(5).setPreferredWidth(130);
+        }
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 418, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
@@ -132,7 +180,8 @@ public class FormBuscaLivro extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(cbBuscaTodos)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btBuscar)))
+                        .addComponent(btBuscar))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -148,31 +197,40 @@ public class FormBuscaLivro extends javax.swing.JFrame {
                             .addComponent(cbBuscaTodos)))
                     .addComponent(btBuscar, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46))
         );
 
-        setSize(new java.awt.Dimension(385, 360));
+        setSize(new java.awt.Dimension(454, 360));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+        DefaultTableModel modelo = (DefaultTableModel) tbLivros.getModel();
+        for (int i = tbLivros.getRowCount() - 1; i >= 0; --i){
+            modelo.removeRow(i);
+        }
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
         if(cbBuscaTodos.isSelected()){
-            taDados.setText("");
             List<Livro> lista = FormPrincipal.dbLivro.todosLivros();
-            String aux = "";
             for(Livro l: lista){
-                aux = aux + l.toString() + "\n\n";
+                String aux = f.format(l.getDataPublicação());
+                modelo.addRow(new Object[]{l.getCodigo(), l.getTitulo(), l.getFornecedor(), l.getQuantidadeEstoque(), l.getValorUnitario(), aux});
             }
-            taDados.setText(aux);
-            btEditar.setEnabled(false);
-            btExcluir.setEnabled(false);
+            if(modelo.getRowCount() == 0){
+                btEditar.setEnabled(false);
+                btExcluir.setEnabled(false);
+            }else{
+                btEditar.setEnabled(true);
+                btExcluir.setEnabled(true);
+            }
         }else{
             Livro l = FormPrincipal.dbLivro.buscarLivro(ftCodigo.getText());
             if(l != null){
-                taDados.setText("");
-                taDados.setText(l.toString());
+                String aux = f.format(l.getDataPublicação());
+                modelo.addRow(new Object[]{l.getCodigo(), l.getTitulo(), l.getFornecedor(), l.getQuantidadeEstoque(), l.getValorUnitario(), aux});   
                 btEditar.setEnabled(true);
                 btExcluir.setEnabled(true);
             }else{
@@ -212,7 +270,9 @@ public class FormBuscaLivro extends javax.swing.JFrame {
     }//GEN-LAST:event_ftCodigoKeyReleased
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        Livro l = FormPrincipal.dbLivro.buscarLivro(ftCodigo.getText());
+        int linha = tbLivros.getSelectedRow();
+        String str = (String) tbLivros.getModel().getValueAt(linha, 1);
+        Livro l = FormPrincipal.dbLivro.buscarLivro(str);
         if(l != null){
             FormLivro.setLivro(l);
             new FormLivro().setVisible(true);
@@ -224,13 +284,17 @@ public class FormBuscaLivro extends javax.swing.JFrame {
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
         Object[] options = {"Sim", "Não"};
         if(JOptionPane.showOptionDialog(null, "Tem certeza que deseja excluir?", "Atenção", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]) == JOptionPane.YES_OPTION){
-            FormPrincipal.dbLivro.removerLivro(ftCodigo.getText());
+            int linha = tbLivros.getSelectedRow();
+            String str = (String) tbLivros.getModel().getValueAt(linha, 1);
+            FormPrincipal.dbLivro.removerLivro(str);
             JOptionPane.showMessageDialog(null, "Livro excluído com sucesso!", "Livro Excluído", JOptionPane.INFORMATION_MESSAGE);
-            taDados.setText("");
-            btEditar.setEnabled(false);
-            btExcluir.setEnabled(false);
-            ftCodigo.setText("");
-            ftCodigo.requestFocus();
+            DefaultTableModel modelo = (DefaultTableModel) tbLivros.getModel();
+            modelo.removeRow(linha);
+            if(modelo.getRowCount() == 0){
+                btEditar.setEnabled(false);
+                btExcluir.setEnabled(false);
+                ftCodigo.requestFocus();
+            }
         }
     }//GEN-LAST:event_btExcluirActionPerformed
 
@@ -282,7 +346,9 @@ public class FormBuscaLivro extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField ftCodigo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea taDados;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbLivros;
     // End of variables declaration//GEN-END:variables
 }

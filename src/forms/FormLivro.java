@@ -43,7 +43,7 @@ public class FormLivro extends javax.swing.JFrame {
         btCadastrar = new javax.swing.JButton();
         btAtualizar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
-        btCancelar = new javax.swing.JButton();
+        btLimpar = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JToolBar.Separator();
         btSair = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -102,20 +102,22 @@ public class FormLivro extends javax.swing.JFrame {
         jToolBar1.add(btAtualizar);
         jToolBar1.add(jSeparator1);
 
-        btCancelar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icones/icCancelar.png"))); // NOI18N
-        btCancelar.setText("Cancelar");
-        btCancelar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        btCancelar.setFocusable(false);
-        btCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btCancelar.setName("btCancelar"); // NOI18N
-        btCancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+        btLimpar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btLimpar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icones/icCancelar.png"))); // NOI18N
+        btLimpar.setText("Limpar");
+        btLimpar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btLimpar.setFocusable(false);
+        btLimpar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btLimpar.setName("btLimpar"); // NOI18N
+        btLimpar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btLimpar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCancelarActionPerformed(evt);
+                btLimparActionPerformed(evt);
             }
         });
-        jToolBar1.add(btCancelar);
+        jToolBar1.add(btLimpar);
+        btLimpar.getAccessibleContext().setAccessibleName("btLimpar");
+
         jToolBar1.add(jSeparator2);
 
         btSair.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -305,18 +307,18 @@ public class FormLivro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btAtualizarActionPerformed
 
-    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+    private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed
         ftCodigo.setText("");
         tfTitulo.setText("");
-        ftDataPublicacao.setText("  /  /    ");
-        ftQtdeEstoque.setText("0");
-        ftValorUnitario.setText("0,00");
+        ftDataPublicacao.setText("");
+        ftQtdeEstoque.setText("");
+        ftValorUnitario.setText("");
         cbFornecedor.setSelectedIndex(0);
         btCadastrar.setEnabled(true);
         ftCodigo.requestFocus();
         ftCodigo.setEnabled(true);
         btAtualizar.setEnabled(false);
-    }//GEN-LAST:event_btCancelarActionPerformed
+    }//GEN-LAST:event_btLimparActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
         livro = null;
@@ -336,7 +338,7 @@ public class FormLivro extends javax.swing.JFrame {
             cbFornecedor.setSelectedItem(livro.getFornecedor());
             btCadastrar.setEnabled(false);
             btAtualizar.setEnabled(true);
-            btCancelar.setEnabled(false);
+            btLimpar.setEnabled(false);
             ftCodigo.setEnabled(false);
             tfTitulo.requestFocus();
         }
@@ -392,7 +394,7 @@ public class FormLivro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAtualizar;
     private javax.swing.JButton btCadastrar;
-    private javax.swing.JButton btCancelar;
+    private javax.swing.JButton btLimpar;
     private javax.swing.JButton btSair;
     private javax.swing.JComboBox<String> cbFornecedor;
     private javax.swing.JFormattedTextField ftCodigo;
