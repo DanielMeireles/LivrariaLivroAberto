@@ -59,7 +59,7 @@ public class FormLivro extends javax.swing.JFrame {
         ftDataPublicacao = new javax.swing.JFormattedTextField();
         ftCodigo = new javax.swing.JFormattedTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -169,9 +169,13 @@ public class FormLivro extends javax.swing.JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ftDataPublicacao.setText("");
         ftDataPublicacao.setToolTipText("");
         ftDataPublicacao.setName("ftDataPublicacao"); // NOI18N
+        ftDataPublicacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ftDataPublicacaoActionPerformed(evt);
+            }
+        });
         ftDataPublicacao.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 ftDataPublicacaoKeyReleased(evt);
@@ -267,7 +271,7 @@ public class FormLivro extends javax.swing.JFrame {
             String aux = ftQtdeEstoque.getText();
             aux = 0+aux.replace(".", "");
             l.setQuantidadeEstoque(Integer.parseInt(aux));
-            l.setTitulo(ftCodigo.getText());
+            l.setTitulo(tfTitulo.getText());
             aux = ftValorUnitario.getText();
             aux = 0+aux.replace(".", "").replace(",", ".");                
             l.setValorUnitario(new Float(aux));
@@ -356,6 +360,10 @@ public class FormLivro extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_ftDataPublicacaoKeyReleased
+
+    private void ftDataPublicacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftDataPublicacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ftDataPublicacaoActionPerformed
     /**
      * @param args the command line arguments
      */

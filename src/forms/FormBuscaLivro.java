@@ -6,7 +6,6 @@
 package forms;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -17,12 +16,14 @@ import model.Livro;
  * @author Daniel
  */
 public class FormBuscaLivro extends javax.swing.JFrame {
-
+    
+    DefaultTableModel modelo = null;
     /**
      * Creates new form FormBuscaLivro
      */
     public FormBuscaLivro() {
         initComponents();
+        modelo = (DefaultTableModel) tbLivros.getModel();
     }
 
     /**
@@ -71,11 +72,6 @@ public class FormBuscaLivro extends javax.swing.JFrame {
             ex.printStackTrace();
         }
         ftCodigo.setName("ftCodigo"); // NOI18N
-        ftCodigo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ftCodigoActionPerformed(evt);
-            }
-        });
         ftCodigo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 ftCodigoKeyReleased(evt);
@@ -152,6 +148,7 @@ public class FormBuscaLivro extends javax.swing.JFrame {
             }
         });
         tbLivros.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        tbLivros.setColumnSelectionAllowed(true);
         tbLivros.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(tbLivros);
         tbLivros.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
@@ -208,29 +205,25 @@ public class FormBuscaLivro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
-        DefaultTableModel modelo = (DefaultTableModel) tbLivros.getModel();
-        for (int i = tbLivros.getRowCount() - 1; i >= 0; --i){
-            modelo.removeRow(i);
-        }
+        limparTabela();
+        
         SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
         if(cbBuscaTodos.isSelected()){
             List<Livro> lista = FormPrincipal.dbLivro.todosLivros();
             for(Livro l: lista){
-                String aux = f.format(l.getDataPublicação());
-                modelo.addRow(new Object[]{l.getCodigo(), l.getTitulo(), l.getFornecedor(), l.getQuantidadeEstoque(), l.getValorUnitario(), aux});
+                inserirLivro(l);
+                btEditar.setEnabled(true);
+                btExcluir.setEnabled(true);
             }
             if(modelo.getRowCount() == 0){
                 btEditar.setEnabled(false);
                 btExcluir.setEnabled(false);
-            }else{
-                btEditar.setEnabled(true);
-                btExcluir.setEnabled(true);
+                JOptionPane.showMessageDialog(null, "Não existem livros cadastrados!", "Erro pesquisa", JOptionPane.WARNING_MESSAGE);
             }
         }else{
             Livro l = FormPrincipal.dbLivro.buscarLivro(ftCodigo.getText());
             if(l != null){
-                String aux = f.format(l.getDataPublicação());
-                modelo.addRow(new Object[]{l.getCodigo(), l.getTitulo(), l.getFornecedor(), l.getQuantidadeEstoque(), l.getValorUnitario(), aux});   
+                inserirLivro(l);
                 btEditar.setEnabled(true);
                 btExcluir.setEnabled(true);
             }else{
@@ -270,9 +263,7 @@ public class FormBuscaLivro extends javax.swing.JFrame {
     }//GEN-LAST:event_ftCodigoKeyReleased
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed
-        int linha = tbLivros.getSelectedRow();
-        String str = (String) tbLivros.getModel().getValueAt(linha, 1);
-        Livro l = FormPrincipal.dbLivro.buscarLivro(str);
+        Livro l = getLivro();
         if(l != null){
             FormLivro.setLivro(l);
             new FormLivro().setVisible(true);
@@ -298,10 +289,25 @@ public class FormBuscaLivro extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btExcluirActionPerformed
 
-    private void ftCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftCodigoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ftCodigoActionPerformed
-
+    private void limparTabela(){
+        for (int i = tbLivros.getRowCount() - 1; i >= 0; --i){
+            modelo.removeRow(i);
+        }
+    }
+    
+    private void inserirLivro(Livro l){
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+        String aux = f.format(l.getDataPublicação());
+        modelo.addRow(new Object[]{l.getCodigo(), l.getTitulo(), l.getFornecedor(), l.getQuantidadeEstoque(), l.getValorUnitario(), aux});
+    }
+    
+    private Livro getLivro(){
+        int linha = tbLivros.getSelectedRow();
+        String str = (String) tbLivros.getModel().getValueAt(linha, 0);
+        Livro l = FormPrincipal.dbLivro.buscarLivro(str);
+        return l;
+    }
+    
     /**
      * @param args the command line arguments
      */
