@@ -60,10 +60,7 @@ public class Usuario {
         return true;
     }
     
-    public boolean efetuarLogin(String matricula, String senha){
-        if(matricula.equalsIgnoreCase(this.matricula) && senha.equals(this.senha)){
-            return true;
-        }
-        return false;
+    public boolean efetuarLogin(String senha){
+        return senha.equals(this.senha);
     }
 }

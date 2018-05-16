@@ -7,6 +7,8 @@ package forms;
 
 import dao.ClienteDao;
 import dao.LivroDao;
+import dao.VendaDao;
+import model.Livro;
 
 /**
  *
@@ -15,13 +17,32 @@ import dao.LivroDao;
 public class FormPrincipal extends javax.swing.JFrame {
     public static ClienteDao dbCliente;
     public static LivroDao dbLivro;
+    public static VendaDao dbVenda = null;
     /**
      * Creates new form FormPrincipal
      */
     public FormPrincipal() {
         dbCliente = new ClienteDao();
         dbLivro = new LivroDao();
+        dbVenda = new VendaDao();
         initComponents();
+        this.cadastrarLivros();
+    }
+    
+    public void cadastrarLivros()
+    {
+        Livro livro = null; //criando um livro
+        for(int i=1; i<30; i++) // serão acrescentados 30 livros na base
+        {
+            livro = new Livro();                    
+            livro.setCodigo(Integer.toString(1000+i));
+            livro.setTitulo("Livro com Titulo " + i);
+            livro.setFornecedor("Editora " + i+10);
+            livro.setQuantidadeEstoque((int)(Math.random() * 10)+ 10*i);
+            livro.setValorUnitario((50%i) + (i*10));            
+            livro.setDataPublicação(i+"/05/"+(1990+i));
+            FormPrincipal.dbLivro.adicionarLivro(livro); //adicionando um livro genérico na base
+        }
     }
 
     /**
@@ -150,6 +171,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         jMenuVendas.setText("Vendas");
 
         jMenuNovaVenda.setText("Nova Venda");
+        jMenuNovaVenda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuNovaVendaActionPerformed(evt);
+            }
+        });
         jMenuVendas.add(jMenuNovaVenda);
 
         jMenuEmitirNF.setText("Emitir N.F.");
@@ -201,6 +227,10 @@ public class FormPrincipal extends javax.swing.JFrame {
     private void jMenuLivrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuLivrosActionPerformed
         new FormBuscaLivro().setVisible(true);
     }//GEN-LAST:event_jMenuLivrosActionPerformed
+
+    private void jMenuNovaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuNovaVendaActionPerformed
+        new FormVenda().setVisible(true);
+    }//GEN-LAST:event_jMenuNovaVendaActionPerformed
 
     /**
      * @param args the command line arguments

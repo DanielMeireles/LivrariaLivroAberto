@@ -124,7 +124,7 @@ public class FormLogin extends javax.swing.JFrame {
                 usuario = new Usuario();
                 if (usuario.validaMatricula(tfMatricula.getText())){
                     if (usuario.validaSenha(new String(pfSenha.getPassword()))){
-                        if(usuario.efetuarLogin(tfMatricula.getText(), new String(pfSenha.getPassword()))){
+                        if(usuario.efetuarLogin(new String(pfSenha.getPassword()))){
                             new FormPrincipal().setVisible(true);
                             this.dispose();
                         }else{
