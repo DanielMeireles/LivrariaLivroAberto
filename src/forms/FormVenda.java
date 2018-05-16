@@ -433,7 +433,6 @@ public class FormVenda extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null, "Favor preencher a quantidade!", "Atenção!", JOptionPane.ERROR_MESSAGE);
         }
-        
     }//GEN-LAST:event_btIncluirItemActionPerformed
 
     private void btRemoverItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverItemActionPerformed

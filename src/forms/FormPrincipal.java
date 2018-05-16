@@ -15,8 +15,8 @@ import model.Livro;
  * @author Daniel
  */
 public class FormPrincipal extends javax.swing.JFrame {
-    public static ClienteDao dbCliente;
-    public static LivroDao dbLivro;
+    public static ClienteDao dbCliente = null;
+    public static LivroDao dbLivro = null;
     public static VendaDao dbVenda = null;
     /**
      * Creates new form FormPrincipal
