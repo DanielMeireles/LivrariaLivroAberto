@@ -50,4 +50,15 @@ public class Item {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }            
+    
+    public String toString(){
+        String str = "";
+        str += "\nTitulo do livro: " + livro.getTitulo();
+        str += "\nValor Unitário: " + livro.getValorUnitario();
+        str += "\nEm estoque: " + livro.getQuantidadeEstoque();
+        str += quantidade;
+        str += "\nValor do item: " + valorItem;
+        str += "\n ########################### \n";
+        return str;
+    }
 }

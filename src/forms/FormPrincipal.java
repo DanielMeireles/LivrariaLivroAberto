@@ -8,6 +8,7 @@ package forms;
 import dao.ClienteDao;
 import dao.LivroDao;
 import dao.VendaDao;
+import model.Cliente;
 import model.Livro;
 
 /**
@@ -27,7 +28,25 @@ public class FormPrincipal extends javax.swing.JFrame {
         dbVenda = new VendaDao();
         initComponents();
         this.cadastrarLivros();
+        this.cadastrarCliente();
     }
+    
+    public void cadastrarCliente()
+    {
+        Cliente cliente = new Cliente();
+        cliente.setCPF("000.000.000-00");
+        cliente.setEmail("teste@teste.com");
+        cliente.getEndereco().setCEP("00000-000");
+        cliente.getEndereco().setCidade("JF");
+        cliente.getEndereco().setEstado("MG");
+        cliente.getEndereco().setLogradouro("Rua A, 0");
+        cliente.getEndereco().setComplemento("Casa 0");
+        cliente.setEstadoCivil("Solteiro");
+        cliente.setNome("Teste");
+        cliente.setTelefone("(00) 0000-0000");
+        dbCliente.inserirCliente(cliente);       
+    }
+    
     
     public void cadastrarLivros()
     {
@@ -179,6 +198,11 @@ public class FormPrincipal extends javax.swing.JFrame {
         jMenuVendas.add(jMenuNovaVenda);
 
         jMenuEmitirNF.setText("Emitir N.F.");
+        jMenuEmitirNF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuEmitirNFActionPerformed(evt);
+            }
+        });
         jMenuVendas.add(jMenuEmitirNF);
 
         jMenuBar1.add(jMenuVendas);
@@ -231,6 +255,10 @@ public class FormPrincipal extends javax.swing.JFrame {
     private void jMenuNovaVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuNovaVendaActionPerformed
         new FormVenda().setVisible(true);
     }//GEN-LAST:event_jMenuNovaVendaActionPerformed
+
+    private void jMenuEmitirNFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuEmitirNFActionPerformed
+        new FormNotaFiscal().setVisible(true);
+    }//GEN-LAST:event_jMenuEmitirNFActionPerformed
 
     /**
      * @param args the command line arguments

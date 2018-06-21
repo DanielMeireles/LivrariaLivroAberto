@@ -14,7 +14,8 @@ import java.util.List;
  * @author Daniel
  */
 public class Venda {
-    private static int numero=0;
+    //private static int numero=0;
+    private int numero;
     private Cliente cliente;
     private List<Item> lista;
     private float valorTotal;
@@ -60,12 +61,12 @@ public class Venda {
         return soma;
     }
 
-    public static int getNumero() {
+    public int getNumero() {
         return numero;
     }
 
-    public static void setNumero(int numero) {
-        Venda.numero = numero;
+    public void setNumero(int numero) {
+        this.numero = numero;
     }
 
     public Cliente getCliente() {
@@ -98,5 +99,20 @@ public class Venda {
 
     public void setDataVenda(Date dataVenda) {
         this.dataVenda = dataVenda;
+    }
+    
+    public String toString()
+    {
+        String str = "";
+        str += cliente.toString();
+        str += "\n ----------------------------- \n";
+        for(Item item: lista)
+        {
+            str += item.toString();
+        }      
+        str += "\n Data da Venda = " + dataVenda;
+        str += "\n Valor total = " + valorTotal;
+
+        return str;        
     }
 }

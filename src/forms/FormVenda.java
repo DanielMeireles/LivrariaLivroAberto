@@ -18,7 +18,7 @@ import model.Venda;
  * @author Daniel
  */
 public class FormVenda extends javax.swing.JFrame {
-
+    private static int numero=1;
     private Venda venda = null;
     private Cliente cliente = null;
     private Livro livro = null;
@@ -97,7 +97,7 @@ public class FormVenda extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel1.setText("CPF:");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(20, 80, 28, 14);
+        jLabel1.setBounds(20, 80, 23, 14);
 
         try {
             tfCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
@@ -143,29 +143,29 @@ public class FormVenda extends javax.swing.JFrame {
         jPanel3.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 30, -1, -1));
 
         lbEndereco.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lbEndereco.setText("Rua Presidente João Goulart, 340");
+        lbEndereco.setText("                                                                           ");
         jPanel3.add(lbEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, 230, 20));
 
         jLabel3.setText("Telefone:");
         jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 30, 110, -1));
 
         lbTelefone.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lbTelefone.setText("(32) 98810-7889");
-        jPanel3.add(lbTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 170, 20));
+        lbTelefone.setText("                                 ");
+        jPanel3.add(lbTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 110, 20));
 
         jLabel4.setText("Nome do Cliente: ");
         jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, 110, -1));
 
         lbNome.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lbNome.setForeground(new java.awt.Color(255, 102, 0));
-        lbNome.setText("--");
+        lbNome.setText("                                                        ");
         jPanel3.add(lbNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 170, 20));
 
         jLabel5.setText("E-mail de contato:");
         jPanel3.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 30, 110, -1));
 
         lbEmail.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lbEmail.setText("joaopereira21@hotmail.com");
+        lbEmail.setText("                                                        ");
         jPanel3.add(lbEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 50, 170, 20));
 
         btConfirmar.setBackground(new java.awt.Color(255, 255, 255));
@@ -203,7 +203,7 @@ public class FormVenda extends javax.swing.JFrame {
 
         lbNumero.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lbNumero.setForeground(new java.awt.Color(0, 102, 0));
-        lbNumero.setText("00234");
+        lbNumero.setText("           ");
         jPanel1.add(lbNumero, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 10, -1, 30));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -212,7 +212,7 @@ public class FormVenda extends javax.swing.JFrame {
 
         lbData.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lbData.setForeground(new java.awt.Color(0, 0, 153));
-        lbData.setText("12/10/2020");
+        lbData.setText("                      ");
         jPanel1.add(lbData, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 10, -1, 30));
 
         getContentPane().add(jPanel1);
@@ -231,7 +231,7 @@ public class FormVenda extends javax.swing.JFrame {
         jPanel4.add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 30, 110, -1));
 
         lbTitulo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        lbTitulo.setText("Desenvolvimento de Aplicações Web com Java");
+        lbTitulo.setText("                                                                                         ");
         jPanel4.add(lbTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, 360, 20));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
@@ -239,8 +239,8 @@ public class FormVenda extends javax.swing.JFrame {
         jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 30, 110, -1));
 
         lbEditora.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        lbEditora.setText("Ciência Moderna");
-        jPanel4.add(lbEditora, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, 150, 20));
+        lbEditora.setText("                                         ");
+        jPanel4.add(lbEditora, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, 130, 20));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jLabel9.setText("Valor unitário:");
@@ -248,7 +248,7 @@ public class FormVenda extends javax.swing.JFrame {
 
         lbValor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         lbValor.setForeground(new java.awt.Color(0, 0, 204));
-        lbValor.setText("R$ 78,00");
+        lbValor.setText("                 ");
         jPanel4.add(lbValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 50, 70, 20));
 
         btBuscarItem.setBackground(new java.awt.Color(255, 255, 255));
@@ -321,7 +321,7 @@ public class FormVenda extends javax.swing.JFrame {
 
         lbTotal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         lbTotal.setForeground(new java.awt.Color(255, 51, 0));
-        lbTotal.setText("R$ 00,0");
+        lbTotal.setText("                    ");
         getContentPane().add(lbTotal);
         lbTotal.setBounds(130, 510, 100, 30);
 
@@ -412,7 +412,7 @@ public class FormVenda extends javax.swing.JFrame {
     }//GEN-LAST:event_btBuscarItemActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-          lbNumero.setText(Integer.toString(Venda.getNumero()));
+          lbNumero.setText(Integer.toString(FormVenda.numero));
           
           SimpleDateFormat fm = new SimpleDateFormat("dd/MM/yyyy");
           String dt = fm.format(venda.getDataVenda());
@@ -446,20 +446,26 @@ public class FormVenda extends javax.swing.JFrame {
 
     private void btFecharVendaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFecharVendaActionPerformed
         if(!venda.getLista().isEmpty()){
+            venda.setValorTotal(soma);
+            venda.setNumero(numero);
             FormPrincipal.dbVenda.inserirVenda(venda);
             JOptionPane.showMessageDialog(null, "Venda efetuada com sucesso!", "Sucesso!", JOptionPane.INFORMATION_MESSAGE);
+            FormVenda.numero += 1;
+            btCancelarActionPerformed(evt);
         }else{
             JOptionPane.showMessageDialog(null, "Não existem itens na venda!", "Atenção!", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btFecharVendaActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-        Venda.setNumero(Venda.getNumero()-1);
         venda = new Venda();
+        cliente = null;
+        livro = null;
         limpaTela();
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void limpaTela(){
+        lbNumero.setText(Integer.toString(numero));
         soma = 0;
         tfCpf.setText("");
         lbNome.setText("");

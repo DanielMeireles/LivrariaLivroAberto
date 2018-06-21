@@ -30,8 +30,9 @@ public class VendaDao {
         Venda v = null;
         for(Venda venda: lista)
         {
-            if(venda.getNumero() == numero)
+            if(venda.getNumero() == numero){
                 v = venda;
+            }
         }
         
         return v;
